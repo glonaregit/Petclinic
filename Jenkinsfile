@@ -6,17 +6,17 @@ pipeline {
         maven 'maven3'
     }
     
- //   environment {
-  //      SCANNER_HOME=tool 'sonar-scanner'
-   // }
+   environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+   }
     
     stages{
         
-        stage("Git Checkout"){
+        /*stage("Git Checkout"){
             steps{
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/jaiswaladi246/Petclinic.git'
             }
-        }
+        }*/
         
         stage("Compile"){
             steps{
@@ -41,12 +41,12 @@ pipeline {
             }
         }
         
-        stage("OWASP Dependency Check"){
-            steps{
-                dependencyCheck additionalArguments: '--scan ./ --format HTML ', odcInstallation: 'DP'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+       // stage("OWASP Dependency Check"){
+         //   steps{
+           //     dependencyCheck additionalArguments: '--scan ./ --format HTML ', odcInstallation: 'DP'
+             //   dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+           // }
+       // }
         
          stage("Build"){
             steps{
